@@ -1,0 +1,12 @@
+services:
+  - docker
+
+install:
+  - docker build -t fasttree .
+
+before_script:
+  - git clone https://github.com/ddiez/dataset.git
+
+script:
+  - docker run fasttree
+  - docker run -v $(pwd):/tmp fasttree FastTree /tmp/dataset/aln/uniprot.faln
