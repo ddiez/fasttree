@@ -2,14 +2,14 @@ services:
   - docker
 
 install:
-  - docker build -t fasttree .
+  - docker build -t ddiez/fasttree .
 
 before_script:
   - git clone https://github.com/ddiez/dataset.git
 
 script:
-  - docker run fasttree
-  - docker run -v $(pwd):/tmp fasttree FastTree /tmp/dataset/aln/uniprot.faln
+  - docker run ddiez/fasttree
+  - docker run -v $(pwd):/tmp ddiez/fasttree FastTree /tmp/dataset/aln/uniprot.faln
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
